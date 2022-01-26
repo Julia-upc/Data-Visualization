@@ -132,20 +132,18 @@ flowServer <- function(id) {
           trips <- trips[[paste(input$hour, input$day, sep = ".")]][, ]
           trips$width <- input$width * trips$busy_index
 
-          if (input$flow == "Arcs") {
-            mapdeck_update(map_id = ns("map"), session = session) %>%
-              add_animated_arc(
-                data = trips,
-                origin = c("Orlng", "Orlat"),
-                destination = c("Dstlng", "Dstlat"),
-                stroke_width = "width",
-                trail_length = input$length * 0.001,
-                animation_speed = input$speed * 0.0004,
-                brush_radius = 500,
-                layer_id = "arcs",
-                update_view = FALSE,
-              )
-          }
+          mapdeck_update(map_id = ns("map"), session = session) %>%
+            add_animated_arc(
+              data = trips,
+              origin = c("Orlng", "Orlat"),
+              destination = c("Dstlng", "Dstlat"),
+              stroke_width = "width",
+              trail_length = input$length * 0.001,
+              animation_speed = input$speed * 0.0004,
+              brush_radius = 500,
+              layer_id = "arcs",
+              update_view = FALSE,
+            )
         }
       )
 
